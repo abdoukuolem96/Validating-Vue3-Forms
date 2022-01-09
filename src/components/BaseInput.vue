@@ -1,15 +1,12 @@
 <template>
-  <label
-    v-if="label"
-    :for="uuid"
-  >
+  <label v-if="label" :for="uuid">
     {{ label }}
   </label>
   <input
     class="field"
     v-bind="{
       ...$attrs,
-      onInput: updateValue
+      onInput: updateValue,
     }"
     :id="uuid"
     :value="modelValue"
@@ -17,11 +14,8 @@
     :aria-describedby="error ? `${uuid}-error` : null"
     :aria-invalid="error ? true : false"
     :class="{ error }"
-  >
-  <BaseErrorMessage
-    v-if="error"
-    :id="`${uuid}-error`"
-  >
+  />
+  <BaseErrorMessage v-if="error" :id="`${uuid}-error`">
     {{ error }}
   </BaseErrorMessage>
 </template>
@@ -34,25 +28,25 @@ export default {
   props: {
     label: {
       type: String,
-      default: ''
+      default: '',
     },
     error: {
       type: String,
-      default: ''
+      default: '',
     },
     modelValue: {
       type: [String, Number],
-      default: ''
-    }
+      default: '',
+    },
   },
-  setup (props, context) {
+  setup(props, context) {
     const { updateValue } = SetupFormComponent(props, context)
     const uuid = UniqueID().getID()
 
     return {
       updateValue,
-      uuid
+      uuid,
     }
-  }
+  },
 }
 </script>
