@@ -2,12 +2,7 @@
   <form @submit.prevent="onSubmit">
     <BaseInput label="Email" type="email" v-model="email" :error="emailError" />
 
-    <BaseInput
-      label="Password"
-      type="password"
-      v-model="password"
-      :error="passwordError"
-    />
+    <BaseInput label="Password" type="password" v-model="password" :error="passwordError" />
 
     <BaseButton type="submit" class="-fill-gradient"> Submit </BaseButton>
   </form>
@@ -40,8 +35,7 @@ export default {
 
     useForm({ validationSchema: validations })
     const { value: email, errorMessage: emailError } = useField('email')
-    const { value: password, errorMessage: passwordError } =
-      useField('password')
+    const { value: password, errorMessage: passwordError } = useField('password')
 
     return {
       onSubmit,
